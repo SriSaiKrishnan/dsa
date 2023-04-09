@@ -18,7 +18,7 @@ Explanation: N has 4 digits
 
     public static void main(String[] args) {
 
-        int n = 1234837453;
+        int n = 123;
         System.out.println(countDigit(n));
     }
 
