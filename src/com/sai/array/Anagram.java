@@ -1,4 +1,4 @@
-package com.sai.recursion;
+package com.sai.array;
 
 public class Anagram {
 
@@ -8,7 +8,7 @@ public class Anagram {
 
 public static boolean anag() {
 
-        String s = "acc", t = "abc";
+        String s = "abc", t = "abc";
 
         if(s.length() != t.length()) return false;
         int[] arr = new int[26];
