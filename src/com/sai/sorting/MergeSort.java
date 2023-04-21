@@ -1,57 +1,54 @@
 package com.sai.sorting;
 
-public class MergeSort {
+import java.util.Arrays;
 
-    public static int arr[] = { 10, 7, 1, 8, 16, 12 };
+public class MergeSort {
+    public static void sort(int[] arr, int left, int right) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            sort(arr, left, mid);
+            sort(arr, mid + 1, right);
+            merge(arr, left, mid, right);
+        }
+    }
+
+    private static void merge(int[] arr, int left, int mid, int right) {
+        int[] temp = new int[arr.length];
+        int i = left;
+        int j = mid + 1;
+        int k = left;
+
+        while (i <= mid && j <= right) {
+            if (arr[i] <= arr[j]) {
+                temp[k] = arr[i];
+                i++;
+            } else {
+                temp[k] = arr[j];
+                j++;
+            }
+            k++;
+        }
+
+        while (i <= mid) {
+            temp[k] = arr[i];
+            i++;
+            k++;
+        }
+
+        while (j <= right) {
+            temp[k] = arr[j];
+            j++;
+            k++;
+        }
+
+        for (k = left; k <= right; k++) {
+            arr[k] = temp[k];
+        }
+    }
 
     public static void main(String[] args) {
-        int j = arr.length;
-        mergeSort(arr,j);
-        for (int i=0; i< a.length; i++)
-        {
-            System.out.print(a[i] + " ");
-        }
+        int[] arr = {5, 2, 9, 1, 5, 6};
+        sort(arr, 0, arr.length - 1);
+        System.out.println(Arrays.toString(arr));
     }
-
-    public static void mergeSort(int[] a, int n) {
-        if (n < 2) {
-            return;
-        }
-        int mid = n / 2;
-        int[] l = new int[mid];
-        int[] r = new int[n - mid];
-
-        for (int i = 0; i < mid; i++) {
-            l[i] = a[i];
-        }
-        for (int i = mid; i < n; i++) {
-            r[i - mid] = a[i];
-        }
-        mergeSort(l, mid);
-        mergeSort(r, n - mid);
-
-        merge(a, l, r, mid, n - mid);
-
-    }
-
-    public static void merge(
-            int[] a, int[] l, int[] r, int left, int right) {
-
-        int i = 0, j = 0, k = 0;
-        while (i < left && j < right) {
-            if (l[i] <= r[j]) {
-                a[k++] = l[i++];
-            }
-            else {
-                a[k++] = r[j++];
-            }
-        }
-        while (i < left) {
-            a[k++] = l[i++];
-        }
-        while (j < right) {
-            a[k++] = r[j++];
-        }
-    }
-
 }
