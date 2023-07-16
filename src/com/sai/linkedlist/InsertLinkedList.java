@@ -1,20 +1,18 @@
 package com.sai.linkedlist;
 
-public class InsertLinkedList {
-
-    Node head;
-
-    static class Node{
+    class Node{
+        Node head;
         int data;
         Node next;
+
+        Node(){}
 
         Node(int d){
             data = d;
             next = null;
         }
-    }
 
-    public static InsertLinkedList insert(InsertLinkedList list, int data){
+    public static Node insert(Node list, int data){
         Node new_node = new Node(data);
         if(list.head == null){
             list.head = new_node;
@@ -31,7 +29,7 @@ public class InsertLinkedList {
         return list;
     }
 
-    public static  InsertLinkedList printList(InsertLinkedList list){
+    public static  Node printList(Node list){
         Node currNode = list.head;
         while (currNode != null){
             System.out.print(currNode.data + " ");
@@ -41,7 +39,7 @@ public class InsertLinkedList {
     }
 
     public static void main(String[] args) {
-        InsertLinkedList list = new InsertLinkedList();
+        Node list = new Node();
         list = insert(list,1);
         list = insert(list,2);
         list = insert(list,3);
@@ -50,5 +48,4 @@ public class InsertLinkedList {
 
         printList(list);
     }
-
 }
