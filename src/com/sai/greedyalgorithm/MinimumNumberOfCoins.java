@@ -24,39 +24,27 @@ Explanation: We need a 100 Rs note, a 20 Rs note and a 1 Rs coin.
 
  */
 
+import java.util.ArrayList;
+
 public class MinimumNumberOfCoins {
 
-   static int denomaination[];
-
     public static void main(String[] args) {
-        int rs = 2004;
-        denomaination = new int[]{1, 2, 5, 10, 20, 50, 100, 500, 1000};
-        System.out.println(findMinimumNumberOfCoins(rs));
-    }
 
-    private static int findMinimumNumberOfCoins(int rs) {
-        int coins = 0;
-        for(int i=0; i<denomaination.length-1; i++)
-        {
-            if(rs < denomaination[i+1])
-            {
-                coins++;
-                rs = rs - denomaination[i];
-                if(rs > 0)
-                    i=0;
-                else
-                    break;
-            }else if(rs >= 1000)
-            {
-                coins++;
-                rs = rs - 1000;
-                if(rs > 0)
-                    i=0;
-                else
-                    break;
+        int V = 49;
+        ArrayList< Integer > ans = new ArrayList < > ();
+        int coins[] = {1, 2, 5, 10, 20, 50, 100, 500, 1000};
+        int n = coins.length;
+        for (int i = n - 1; i >= 0; i--) {
+            while (V >= coins[i]) {
+                V -= coins[i];
+                ans.add(coins[i]);
             }
         }
-        return coins;
-    }
+        System.out.println("The minimum number of coins is "+ans.size());
+        System.out.println("The coins are ");
+        for (int i = 0; i < ans.size(); i++) {
+            System.out.print(" " + ans.get(i));
+        }
 
+    }
 }
